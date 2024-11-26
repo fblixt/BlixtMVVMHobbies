@@ -1,0 +1,38 @@
+﻿<Window x:Class="BlixtMVVMHobbies.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BlixtMVVMHobbies"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="addHobbyButton" Margin="10" Padding="10" FontWeight="Bold" Command="{Binding AddCommand}">Add Hobby</Button>
+            <Button x:Name="deleteHobbyButton" Margin="10" Padding="10" FontWeight="Bold" Command="{Binding DeleteCommand}">Remove Hobby</Button>
+        </StackPanel>
+        <StackPanel Margin="15" Grid.Row="1" >
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Hobbies</TextBlock>
+            <ListView MinHeight="300" ItemsSource="{Binding Hobbies}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedHobby}"></ListView>
+        </StackPanel>
+        <StackPanel Margin="15"  Grid.Row="1" Grid.Column="1">
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold">Info</TextBlock>
+            <TextBlock Text="Name:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedHobby.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Category:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedHobby.Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Skill Level:" FontWeight="Bold"/>
+            <TextBox Text="{Binding SelectedHobby.SkillLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBlock Text="Number of World Wide Practitioners:" FontWeight="Bold" />
+            <TextBox Text="{Binding SelectedHobby.NumberOfPractitioners, StringFormat=N0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+    </Grid>
+</Window>
